@@ -3,30 +3,26 @@
         <div class="col-sm-12">
             <h2>Images <small>/r/aww</small></h2>
             {{#if slice}}
-                {{#if slice.children}}
-                    {{#each slice.children}}
-                        <div class="col-sm-2 text-center">
-                            <a href="{{ data.url}}">
-                                <img src="{{ data.thumbnail}}" class="responsive" />
-                            </a>
-                        </div>
-                    {{/each}}
-                {{/if}}
+                <div class="grid">
+                    {{#if slice.children}}
+                        {{#each slice.children}}
+                                <a href="{{ data.url}}">
+                                    <img src="{{ data.thumbnail}}" class="responsive" />
+                                </a>
+                        {{/each}}
+                    {{/if}}
+                </div>
             {{else}}
                 <p>No images were found</p>
             {{/if}}
         </div>
     </div>
     <div class="row">
-        {{#if slice.before}}
-            <div class="col-sm-6">
-                <a href="/id/{{ slice.before }}">Previous</a>
-            </div>
-        {{/if}}
-        {{#if slice.after}}
-            <div class="col-sm-6">
-                <a href="/id/{{ slice.after }}">Before</a>
-            </div>
-        {{/if}}
+        <div class="col-sm-6">
+            {{#if slice.before}}<a href="/id/{{ slice.before }}">Previous</a>{{/if}}
+        </div>
+        <div class="col-sm-6">
+            {{#if slice.after}}<a href="/id/{{ slice.after }}">After</a>{{/if}}
+        </div>
     </div>
 </div>
