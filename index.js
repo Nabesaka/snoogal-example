@@ -4,7 +4,6 @@ const fs = require('fs'),
       express = require('express'),
       exphbs = require('express-handlebars'),
       app = express(),
-      PORT = 3000,
       Snoocore = require('snoocore');
 
 const reddit = new Snoocore({
@@ -29,12 +28,13 @@ app.engine('.hbs', exphbs({
 }))
 app.set('view engine', '.hbs')
 app.set('views', path.join(__dirname, 'views'))
-app.listen(PORT, (err) => {
+app.set('port', (process.env.PORT || 5000));
+app.listen(app.get('port'), (err) => {
     if (err) {
       return console.log('something bad happened', err)
     }
 
-    console.log(`server is listening on ${PORT}`)
+    console.log('server is listening on port', app.get('port'))
 })
 
 app.get('/', (request, response, next) => {
