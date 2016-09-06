@@ -7,19 +7,14 @@ const fs = require('fs'),
       PORT = 3000,
       Snoocore = require('snoocore');
 
-var configFile = 'creds.json';
-var config = JSON.parse(
-    fs.readFileSync(configFile);
-);
-
 const reddit = new Snoocore({
     userAgent: 'node:snoogal:v1.0 (by /u/veneficusunus)', // unique string identifying the app
     oauth: {
         type: 'script',
-        key: config.key, // OAuth client key (provided at reddit app)
-        secret: config.secret, // OAuth secret (provided at reddit app)
-        username: config.username, // Reddit username used to make the reddit app
-        password: config.password, // Reddit password for the username
+        key: process.env.REDDIT_KEY, // OAuth client key (provided at reddit app)
+        secret: process.env.REDDIT_SECRET, // OAuth secret (provided at reddit app)
+        username: process.env.REDDIT_USERNAME, // Reddit username used to make the reddit app
+        password: process.env.REDDIT_PASSWORD, // Reddit password for the username
         // The OAuth scopes that we need to make the calls that we
         // want. The reddit documentation will specify which scope
         // is needed for evey call
@@ -43,7 +38,7 @@ app.listen(PORT, (err) => {
 })
 
 app.get('/', (request, response, next) => {
-    reddit('/r/celebritylegs').listing({
+    reddit('/r/aww').listing({
         limit: 48,
         sort: 'hot'
     }).then(function(result) {
@@ -54,7 +49,7 @@ app.get('/', (request, response, next) => {
 });
 
 app.get('/id/:id', (request, response, next) => {
-    reddit('/r/celebritylegs').listing({
+    reddit('/r/aww').listing({
         limit: 48,
         sort: 'hot',
         after: request.params.id || false
