@@ -1,0 +1,16 @@
+{
+  "name": "snoogal",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.14.0",
+    "express-handlebars": "^3.0.0",
+    "snoocore": "^3.3.1"
+  }
+}

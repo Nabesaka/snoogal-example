@@ -1,0 +1,32 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <h2>Images <small>/r/celebritylegs</small></h2>
+            {{#if slice}}
+                {{#if slice.children}}
+                    {{#each slice.children}}
+                        <div class="col-sm-2 text-center">
+                            <a href="{{ data.url}}">
+                                <img src="{{ data.thumbnail}}" class="responsive" />
+                            </a>
+                        </div>
+                    {{/each}}
+                {{/if}}
+            {{else}}
+                <p>No images were found</p>
+            {{/if}}
+        </div>
+    </div>
+    <div class="row">
+        {{#if slice.before}}
+            <div class="col-sm-6">
+                <a href="/id/{{ slice.before }}">Previous</a>
+            </div>
+        {{/if}}
+        {{#if slice.after}}
+            <div class="col-sm-6">
+                <a href="/id/{{ slice.after }}">Before</a>
+            </div>
+        {{/if}}
+    </div>
+</div>
